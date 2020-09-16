@@ -35,10 +35,30 @@
 <script src="https://code.jquery.com/jquery-3.5.1.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
 
 <script>
+    var photo = 0;
+    var maxPhoto = 9;
+
     $( document ).ready(function() {
-        // randomly pick a photo!
-        $("img.portrait").attr("src","images/" + Math.floor(Math.random() * Math.floor(6)) + ".jpg");
+        setPhoto();
     });
+
+    function setPhoto()
+    {
+        setTimeout(function ()
+        {
+            // randomly pick a photo!
+            $("img.portrait").attr("src","images/" + photo + ".jpg");
+
+            photo++;
+
+            if(photo > maxPhoto)
+            {
+                photo = 0;
+            }
+        
+            setPhoto();
+        }, 5000);
+    }
 </script>
 
 {{ end }}
